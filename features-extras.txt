@@ -1,0 +1,3 @@
+- Criar página de 404 com React Router (ler a documentação)
+https://reactrouter.com/en/main/start/tutorial
+- Transormar os inputs em componentes globais igual o button
