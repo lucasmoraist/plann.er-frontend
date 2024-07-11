@@ -1,15 +1,14 @@
 import { Mail, User, X } from "lucide-react";
-import React, { FormEvent } from "react";
+import React from "react";
+import { Button } from "../../components/button";
 
 interface ConfirmTripModalProps {
   toggleConfirmTripModal: () => void;
-  addNewEmailToInvite: (e: FormEvent<HTMLFormElement>) => void;
   createTrip: () => void;
 }
 
 export function ConfirmTripModal({
   toggleConfirmTripModal,
-  addNewEmailToInvite,
   createTrip,
 }: ConfirmTripModalProps) {
   return (
@@ -50,19 +49,16 @@ export function ConfirmTripModal({
           <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
             <Mail className="text-zinc-400 size-5" />
             <input
-              name="emaail"
+              name="email"
               type="email"
               placeholder="Seu email pessoal"
               className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
             />
           </div>
 
-          <button
-            type="submit"
-            className="bg-lime-300 text-lime-950 w-full justify-center rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400"
-          >
+          <Button type="submit" variant="primary" size="full">
             Confirmar criação da viagem
-          </button>
+          </Button>
         </form>
       </div>
     </div>
