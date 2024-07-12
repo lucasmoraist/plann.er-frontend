@@ -1,15 +1,3 @@
-import {
-  Calendar,
-  CircleCheck,
-  CircleDashed,
-  Link2,
-  MapPin,
-  Plus,
-  Settings2,
-  Tag,
-  UserCog,
-  X,
-} from "lucide-react";
 import React, { useState } from "react";
 import { CreationActivityModal } from "./creation-activity-modal";
 import { CreationLinkModal } from "./creation-link-modal";
@@ -22,7 +10,7 @@ export function TripDetailsPage() {
   const [isCreateActivityModal, setIsCreateActivityModal] = useState(false);
   const [isCreateLinkModal, setIsCreateLinkModal] = useState(false);
 
-  function toggleCreateActivityModal() {
+  async function toggleCreateActivityModal() {
     setIsCreateActivityModal(!isCreateActivityModal);
   }
 
