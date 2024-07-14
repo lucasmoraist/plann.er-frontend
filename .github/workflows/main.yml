@@ -1,0 +1,41 @@
+name: Build and Deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Set email
+        run: git config --global user.email ${{ secrets.EMAIL }}
+
+      - name: Set name
+        run: git config --global user.name ${{ secrets.NAME }}
+
+      - name: Build React Project
+        run: npm run predeploy
+
+      - name: Deploy
+        uses: crazy-max/ghaction-github-pages@v1
+        
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_REPO }}
