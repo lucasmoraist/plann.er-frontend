@@ -4,7 +4,7 @@ import { TripDetailsPage } from "./pages/trip-details";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/plann.er-frontend/",
     element: <CreateTripPage />,
   },
   {
