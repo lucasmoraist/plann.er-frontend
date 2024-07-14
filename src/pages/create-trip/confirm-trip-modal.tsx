@@ -1,5 +1,4 @@
 import { Mail, User, X } from "lucide-react";
-import React from "react";
 import { Button } from "../../components/button";
 
 interface ConfirmTripModalProps {

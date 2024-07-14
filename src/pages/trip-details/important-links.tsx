@@ -1,5 +1,4 @@
 import { Link2, Plus } from "lucide-react";
-import React from "react";
 import { Button } from "../../components/button";
 
 interface ImportantLinksProps {

@@ -1,4 +1,4 @@
-import React, { ComponentProps, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 // Em ComponentProps eu estou dizendo que que eu quero poder utilizar os atributos de um botão
