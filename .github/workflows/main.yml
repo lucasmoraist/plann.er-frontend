@@ -28,6 +28,9 @@ jobs:
       - name: Set name
         run: git config --global user.name ${{ secrets.NAME }}
 
+      - name: Set environment variables
+        run: echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" > .env
+
       - name: Build React Project
         run: npm run predeploy
 
@@ -38,4 +41,4 @@ jobs:
           target_branch: gh-pages
           build_dir: build
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_REPO }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_REPO_PLANNER }}
