@@ -4,6 +4,8 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
+<img src="./public/home-screen.png" width="720px" alt="Tela inicial do projeto" title="Tela inicial do projeto" />
+
 ## Descrição
 O Projeto Journey tem como objetivo ajudar os usuários a organizar suas viagens, sejam elas a trabalho ou lazer. O sistema permite que os usuários criem e gerenciem viagens de forma eficiente, fornecendo funcionalidades para o planejamento detalhado de cada dia da viagem.
 
