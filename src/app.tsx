@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     element: <CreateTripPage />,
   },
   {
-    path: "/trips/:tripId",
+    path: "/plann.er-frontend/trips/:tripId",
     element: <TripDetailsPage />,
   },
 ]);
