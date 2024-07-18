@@ -29,7 +29,6 @@ export function CreationActivityModal({
       occursAt
     })
 
-    document.location.reload()
   }
 
   return (
