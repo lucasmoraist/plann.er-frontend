@@ -7,20 +7,17 @@ on:
       - master
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install Dependencies
-        run: npm install
 
       - name: Set email
         run: git config --global user.email ${{ secrets.EMAIL }}
@@ -29,14 +26,37 @@ jobs:
         run: git config --global user.name ${{ secrets.NAME }}
 
       - name: Set environment variables
-        run: echo "VITE_APP_API_KEY=${{ secrets.VITE_APP_API_URL }}" > .env
+        run: |
+          echo "VITE_APP_API_URL=${{ secrets.VITE_APP_API_URL }}" > .env
+          cat .env
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Build React Project
         run: npm run predeploy
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v1
-        
         with:
           target_branch: gh-pages
           build_dir: dist
