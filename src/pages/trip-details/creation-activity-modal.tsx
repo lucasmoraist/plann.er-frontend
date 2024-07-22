@@ -2,7 +2,7 @@ import { Calendar, Tag, X } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface CreationActivityModalProps {
   toggleCreateActivityModal: () => void;
@@ -11,6 +11,8 @@ interface CreationActivityModalProps {
 export function CreationActivityModal({
   toggleCreateActivityModal,
 }: CreationActivityModalProps) {
+
+  const navigate = useNavigate()
 
   const { tripId } = useParams()
 
@@ -29,7 +31,7 @@ export function CreationActivityModal({
       occursAt
     })
 
-    window.location.reload()
+    navigate(`/trips/${tripId}`)
   }
 
   return (
