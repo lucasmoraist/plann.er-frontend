@@ -1,17 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CreateTripPage } from "./pages/create-trip";
 import { TripDetailsPage } from "./pages/trip-details";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <CreateTripPage />,
+    },
+    {
+      path: "/trips/:tripId",
+      element: <TripDetailsPage />,
+    },
+  ],
   {
-    path: "/plann.er-frontend/",
-    element: <CreateTripPage />,
-  },
-  {
-    path: "/plann.er-frontend/trips/:tripId",
-    element: <TripDetailsPage />,
-  },
-]);
+    basename: "/plann.er-frontend",
+  }
+);
 
 export function App() {
   return <RouterProvider router={router} />;

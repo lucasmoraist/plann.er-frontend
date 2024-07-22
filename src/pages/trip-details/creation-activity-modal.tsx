@@ -29,6 +29,7 @@ export function CreationActivityModal({
       occursAt
     })
 
+    window.location.reload()
   }
 
   return (
