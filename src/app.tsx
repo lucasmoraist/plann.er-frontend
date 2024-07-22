@@ -12,10 +12,7 @@ const router = createBrowserRouter(
       path: "/trips/:tripId",
       element: <TripDetailsPage />,
     },
-  ],
-  {
-    basename: "/plann.er-frontend",
-  }
+  ]
 );
 
 export function App() {
