@@ -84,7 +84,7 @@ export function CreateTripPage() {
 
     const { tripId } = response.data;
 
-    navigate(`/plann.er-frontend/trips/${tripId}`);
+    navigate(`/trips/${tripId}`);
   }
 
   return (
