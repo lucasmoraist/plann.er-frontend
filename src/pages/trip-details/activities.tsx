@@ -16,9 +16,27 @@ export function Activities({ toggleCreateActivityModal }: ActivitiesProps) {
   const [activities, setActivities] = useState<IActivity[]>([]);
 
   useEffect(() => {
-    api
-      .get(`/trips/${tripId}/activities`)
-      .then((response) => setActivities(response.data));
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const fetchActivities = async () => {
+      try {
+        const response = await api.get(`/trips/${tripId}/activities`, {
+          signal,
+        });
+        setActivities(response.data);
+      } catch (err) {
+        if (!signal.aborted) {
+          console.error(err);
+        }
+      }
+    };
+
+    fetchActivities();
+
+    return () => {
+      controller.abort();
+    };
   }, [tripId]);
 
   return (
@@ -34,10 +52,10 @@ export function Activities({ toggleCreateActivityModal }: ActivitiesProps) {
       <div className="space-y-8">
         {activities.map((category) => {
           const categoryDate = new Date(category.date);
-          
+
           const newDate = addDays(categoryDate, 1);
 
-          const displayDate = format(newDate, 'EEEE', { locale: ptBR });
+          const displayDate = format(newDate, "EEEE", { locale: ptBR });
 
           return (
             <div key={categoryDate.toISOString()} className="space-y-2.5">
@@ -45,16 +63,17 @@ export function Activities({ toggleCreateActivityModal }: ActivitiesProps) {
                 <span className="text-xl text-zinc-300 font-semibold">
                   Dia {categoryDate.getUTCDate()}
                 </span>
-                <span className="text-xs text-zinc-500">
-                  {displayDate}
-                </span>
+                <span className="text-xs text-zinc-500">{displayDate}</span>
               </div>
 
               {category.activities.length > 0 ? (
                 <div>
                   {category.activities.map((activity) => {
                     return (
-                      <div key={activity.id} className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3">
+                      <div
+                        key={activity.id}
+                        className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3"
+                      >
                         <CircleCheck className="size-5 text-lime-300" />
                         <span className="text-zinc-100">{activity.title}</span>
                         <span className="text-zinc-400 text-sm ml-auto">
